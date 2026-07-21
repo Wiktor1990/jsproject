@@ -77,10 +77,10 @@ const cipher =
 console.log(cipher);
 
 {
-  let userName = prompt("Your name?");
+  const userName = prompt("Your name?");
   alert(userName);
 
-  let userAge = +prompt("Your age?");
+  const userAge = +prompt("Your age?");
   alert(userAge);
   console.log(`${userName}, ${userAge}`);
 }
