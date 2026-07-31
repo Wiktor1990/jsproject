@@ -18,7 +18,15 @@ function calculateOverpayment(loanAmount) {
 console.log(calculateOverpayment(500000));
 
 function trimString(str, fromIndex, toIndex) {
-  return str.substring(fromIndex, toIndex);
+  let result = "";
+
+  const end = toIndex > str.length ? str.length : toIndex;
+
+  for (let i = fromIndex; i < end; i++) {
+    result += str[i];
+  }
+
+  return result;
 }
 
 const text = "Привет, мир!";
