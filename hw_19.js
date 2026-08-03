@@ -81,6 +81,18 @@ let student2 = {
   age: 27,
 };
 
-const isEqual =
-  student1.name === student2.name && student1.age === student2.age;
-console.log(isEqual);
+function isEqual(obj1, obj2) {
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+    return false;
+  }
+
+  for (let key in obj1) {
+    if (obj1[key] !== obj2[key]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(isEqual(student1, student2));
