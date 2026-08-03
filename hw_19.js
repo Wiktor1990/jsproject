@@ -45,9 +45,19 @@ let salaries = {
   alexandra: 19,
 };
 
-const salaryValues = Object.values(salaries);
-const totalSalary = salaryValues.reduce((sum, current) => sum + current, 0);
-let averageSalary = totalSalary / salaryValues.length;
+let totalSalary = 0;
+let count = 0;
+
+for (const key in salaries) {
+  if (salaries.hasOwnProperty(key)) {
+    totalSalary += salaries[key];
+    count++;
+  }
+}
+
+let averageSalary = totalSalary / count;
+
+console.log(`Общая сумма: ${totalSalary}`);
 console.log(`Средняя зарплата: ${averageSalary}`);
 
 const registerLogin = prompt("Регистрация: Введите логин");
