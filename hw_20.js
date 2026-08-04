@@ -2,7 +2,7 @@ const colors = ["red", "green", "blue"];
 console.log(colors.length);
 
 const animals = ["monkey", "dog", "cat"];
-console.log(animals[2]);
+console.log(animals[animals.length - 1]);
 
 const numbers = [5, 43, 63, 23, 90];
 const res = numbers.slice(0, 0);
