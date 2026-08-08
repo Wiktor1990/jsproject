@@ -84,12 +84,7 @@ const student5 = new students("Veronika", 300, "B");
 
 const studentsArray = [student1, student2, student3, student4, student5];
 
-function calculateCreditLimit(studentsArray) {
-  let totalSum = 0;
-  for (let i = 0; i < studentsArray.length; i++) {
-    totalSum += studentsArray[i].getCreditLimit();
-  }
-  return totalSum;
-}
+const calculateCreditLimit = (arr) =>
+  arr.reduce((total, student) => total + student.getCreditLimit(), 0);
 
 console.log("Total credit limit: " + calculateCreditLimit(studentsArray));
