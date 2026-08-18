@@ -11,13 +11,14 @@ body {
   padding-top: 50px;
 }
 
-.todo-container {
+.container {
   background-color: #d1d1d1;
   border: 3px solid #000;
   border-radius: 20px;
   padding: 25px;
   width: 600px;
-  box-sizing: border-box;
+  display: flex;
+  gap: 15px;
 }
 
 .input-group {
