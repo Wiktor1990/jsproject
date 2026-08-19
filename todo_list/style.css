@@ -18,6 +18,7 @@ body {
   padding: 25px;
   width: 600px;
   display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 
