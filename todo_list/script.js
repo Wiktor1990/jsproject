@@ -54,6 +54,34 @@ function initTodoApp() {
   deleteAllBtn.addEventListener("click", () => {
     todoList.innerHTML = "";
   });
+
+  todoList.addEventListener("click", (event) => {
+    const target = event.target;
+
+    const action = target.dataset.action;
+    if (!action) return;
+
+    const li = target.closest(".todo-item");
+    const textDiv = li.querySelector(".todo-text");
+
+    if (action === "delete") {
+      li.remove();
+    }
+
+    if (action === "check") {
+      const isDone = textDiv.style.textDecoration === "line-through";
+
+      if (isDone) {
+        textDiv.style.textDecoration = "none";
+        textDiv.style.opacity = "1";
+        li.classList.remove("completed");
+      } else {
+        textDiv.style.textDecoration = "line-through";
+        textDiv.style.opacity = "0.5";
+        li.classList.add("completed");
+      }
+    }
+  });
 }
 initTodoApp();
 
@@ -67,24 +95,9 @@ const createTodoItem = (text, todoList) => {
 
   const li = createCustomElement("li", "todo-item");
 
+  checkBtn.dataset.action = "check";
+  deleteBtn.dataset.action = "delete";
+
   li.append(checkBtn, textDiv, deleteBtn, dateDiv);
   todoList.append(li);
-
-  deleteBtn.addEventListener("click", () => {
-    li.remove();
-  });
-
-  checkBtn.addEventListener("click", () => {
-    const isDone = textDiv.style.textDecoration === "line-through";
-
-    if (isDone) {
-      textDiv.style.textDecoration = "none";
-      textDiv.style.opacity = "1";
-      li.classList.remove("completed");
-    } else {
-      textDiv.style.textDecoration = "line-through";
-      textDiv.style.opacity = "0.5";
-      li.classList.add("completed");
-    }
-  });
 };
