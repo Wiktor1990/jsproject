@@ -69,17 +69,7 @@ function initTodoApp() {
     }
 
     if (action === "check") {
-      const isDone = textDiv.style.textDecoration === "line-through";
-
-      if (isDone) {
-        textDiv.style.textDecoration = "none";
-        textDiv.style.opacity = "1";
-        li.classList.remove("completed");
-      } else {
-        textDiv.style.textDecoration = "line-through";
-        textDiv.style.opacity = "0.5";
-        li.classList.add("completed");
-      }
+      li.classList.toggle("completed");
     }
   });
 }
