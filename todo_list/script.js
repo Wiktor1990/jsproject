@@ -1,3 +1,5 @@
+const todosStorageKey = "todos";
+
 const createCustomElement = (tagName, className, textContent = "") => {
   const element = document.createElement(tagName);
   if (className) element.className = className;
@@ -40,6 +42,7 @@ function initTodoApp() {
       createTodoItem(text, todoList);
       input.value = "";
       input.focus();
+      saveCurrentDOMToLocalStorage(todoList);
     }
   };
 
@@ -53,6 +56,8 @@ function initTodoApp() {
 
   deleteAllBtn.addEventListener("click", () => {
     todoList.innerHTML = "";
+
+    setDate([]);
   });
 
   todoList.addEventListener("click", (event) => {
@@ -66,6 +71,8 @@ function initTodoApp() {
 
     if (action === "delete") {
       li.remove();
+
+      saveCurrentDOMToLocalStorage(todoList);
     }
 
     if (action === "check") {
@@ -80,8 +87,11 @@ function initTodoApp() {
         textDiv.style.opacity = "0.5";
         li.classList.add("completed");
       }
+
+      saveCurrentDOMToLocalStorage(todoList);
     }
   });
+  loadTodosFromStorage(todoList);
 }
 initTodoApp();
 
@@ -101,3 +111,68 @@ const createTodoItem = (text, todoList) => {
   li.append(checkBtn, textDiv, deleteBtn, dateDiv);
   todoList.append(li);
 };
+
+function setDate(todos) {
+  localStorage.setItem(todosStorageKey, JSON.stringify(todos));
+}
+
+function getDate() {
+  if (localStorage.getItem(todosStorageKey) === null) {
+    setDate([]);
+  }
+
+  const todosFromStorage = localStorage.getItem(todosStorageKey);
+  try {
+    return JSON.parse(todosFromStorage);
+  } catch (error) {
+    console.log("Parsing error:", error);
+    return [];
+  }
+}
+
+function saveCurrentDOMToLocalStorage(todoListElement) {
+  const todoItems = todoListElement.querySelectorAll(".todo-item");
+  const todosArray = [];
+
+  todoItems.forEach((li) => {
+    const text = li.querySelector(".todo-text").textContent;
+    const date = li.querySelector(".todo-date").textContent;
+    const isChecked =
+      li.querySelector(".todo-text").style.textDecoration === "line-through";
+
+    if (!li.dataset.id) {
+      li.dataset.id = Date.now() + Math.random();
+    }
+
+    const todoObj = {
+      id: Number(li.dataset.id),
+      date: date,
+      text: text,
+      isChecked: isChecked,
+    };
+
+    todosArray.push(todoObj);
+  });
+
+  setDate(todosArray);
+}
+
+function loadTodosFromStorage(todoListElement) {
+  const savedTodos = getDate();
+
+  savedTodos.forEach((todo) => {
+    createTodoItem(todo.text, todoListElement);
+
+    const lastLi = todoListElement.lastElementChild;
+    lastLi.dataset.id = todo.id;
+
+    lastLi.querySelector(".todo-date").textContent = todo.date;
+
+    if (todo.isChecked) {
+      const textDiv = lastLi.querySelector(".todo-text");
+      textDiv.style.textDecoration = "line-through";
+      textDiv.style.opacity = "0.5";
+      lastLi.classList.add("completed");
+    }
+  });
+}
