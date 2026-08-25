@@ -18,6 +18,7 @@ body {
   padding: 25px;
   width: 600px;
   display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 
@@ -118,4 +119,14 @@ body {
   position: absolute;
   bottom: 12px;
   right: 15px;
+}
+
+.todo-item.completed {
+  background-color: #b0b0b0;
+  border-color: #777;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through !important;
+  opacity: 0.5 !important;
 }
