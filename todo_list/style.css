@@ -127,6 +127,6 @@ body {
 }
 
 .todo-item.completed .todo-text {
-  text-decoration: line-through;
-  opacity: 0.5;
+  text-decoration: line-through !important;
+  opacity: 0.5 !important;
 }
