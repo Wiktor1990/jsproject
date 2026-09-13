@@ -6,8 +6,6 @@ function printTodos(todos) {
 
   const ul = document.createElement("ul");
 
-  const fragment = document.createDocumentFragment();
-
   todos.forEach((todo) => {
     const { id, title } = todo;
 
@@ -15,10 +13,9 @@ function printTodos(todos) {
 
     li.textContent = `${id} ${title}`;
 
-    fragment.append(li);
+    ul.append(li);
   });
 
-  ul.append(fragment);
   root.append(ul);
 }
 
@@ -30,12 +27,13 @@ async function getTodos() {
       throw new Error(`Ошибка сети: статус ${response.status}`);
     }
 
-    const todos = await response.json();
-
-    printTodos(todos);
+    return await response.json();
   } catch (error) {
     console.error("Не удалось загрузить данные задач:", error);
+    return [];
   }
 }
 
-getTodos();
+getTodos().then((todos) => {
+  printTodos(todos);
+});
