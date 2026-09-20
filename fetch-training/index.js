@@ -1,5 +1,7 @@
 const API_URL = "https://jsonplaceholder.typicode.com/todos";
 
+const todosOrder = [15, 23, 7, 3];
+
 function printTodos(todos) {
   const root = document.getElementById("root");
   if (!root) return;
@@ -19,21 +21,58 @@ function printTodos(todos) {
   root.append(ul);
 }
 
-async function getTodos() {
+function getTodosByPromiseChaining(orderArray) {
+  let chain = Promise.resolve([]);
+
+  for (const id of orderArray) {
+    chain = chain.then((loadedTodos) => {
+      return fetch(`${API_URL}/${id}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `Не удалось загрузить пост №${id}. Статус: ${response.status}`,
+            );
+          }
+          return response.json();
+        })
+        .then((todo) => [...loadedTodos, todo]);
+    });
+  }
+
+  return chain.catch((error) => {
+    console.error("Ошибка в Promise chaining:", error.message);
+    return [];
+  });
+}
+
+getTodosByPromiseChaining(todosOrder).then((todos) => {
+  printTodos(todos);
+});
+
+async function getTodosByAsyncAwait(orderArray) {
+  const loadedTodos = [];
   try {
-    const response = await fetch(API_URL);
+    for (const id of orderArray) {
+      const response = await fetch(`${API_URL}/${id}`);
 
-    if (!response.ok) {
-      throw new Error(`Ошибка сети: статус ${response.status}`);
+      if (!response.ok) {
+        throw new Error(
+          `Не удалось загрузить пост №${id}. Статус: ${response.status}`,
+        );
+      }
+
+      const todo = await response.json();
+      loadedTodos.push(todo);
     }
-
-    return await response.json();
+    return loadedTodos;
   } catch (error) {
-    console.error("Не удалось загрузить данные задач:", error);
+    console.error("Ошибка в Async/Await:", error.message);
     return [];
   }
 }
 
-getTodos().then((todos) => {
-  printTodos(todos);
+getTodosByAsyncAwait(todosOrder).then((todos) => {
+  if (todos.length > 0) {
+    printTodos(todos);
+  }
 });
