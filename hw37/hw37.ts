@@ -123,7 +123,7 @@ const uniqueActors = films.reduce((acc, film) => {
 
 console.log(uniqueActors);
 //3
-const sortedFilms = [...films].toSorted((a, b) => b.imdbRating - a.imdbRating);
+const sortedFilms = films.toSorted((a, b) => b.imdbRating - a.imdbRating);
 
 console.log(sortedFilms);
 //4
