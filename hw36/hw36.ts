@@ -39,7 +39,10 @@ const names = users.map((user) => user.name).join(", ");
 console.log(names);
 
 //2
-function sumCarsCount<T, K extends keyof T>(items: T[], key: K): number {
+function sumCarsCount<T extends object, K extends keyof T>(
+  items: T[],
+  key: K,
+): number {
   return items.reduce((acc, item) => {
     const value = item[key];
     if (Array.isArray(value)) {
@@ -70,10 +73,10 @@ const usersAnimals = getUsersWithAnimals(users);
 console.log(usersAnimals);
 
 //5
-function getUniqueCarsString(usersList: User[]): string {
-  const allCars = usersList.reduce<string[]>((acc, user) => {
-    if (user.cars && Array.isArray(user.cars)) {
-      acc.push(...user.cars);
+function getUniqueCarsString<T extends Pick<User, "cars">>(items: T[]): string {
+  const allCars = items.reduce<string[]>((acc, item) => {
+    if (item.cars && Array.isArray(item.cars)) {
+      acc.push(...item.cars);
     }
     return acc;
   }, []);
