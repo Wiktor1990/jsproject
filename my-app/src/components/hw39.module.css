@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  font-family: sans-serif;
+  color: #313037;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 13px;
+  color: #8d8e97;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.title {
+  color: #313037;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text {
+  color: #8d8e97;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.imageWrapper {
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.actionLeft,
+.actionRight {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  color: #8d8e97;
+}
+
+.iconBtn:hover {
+  opacity: 0.7;
+}
+
+.cardBig {
+  flex-direction: row;
+  max-width: 720px;
+  padding: 24px;
+  gap: 24px;
+}
+
+.cardBig .content {
+  flex: 1;
+}
+
+.cardBig .title {
+  font-size: 20px;
+}
+
+.cardBig .imageWrapper {
+  width: 240px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.cardMedium {
+  flex-direction: column;
+  width: 320px;
+}
+
+.cardMedium .imageWrapper {
+  width: 100%;
+  height: 180px;
+}
+
+.cardMedium .content {
+  padding: 16px;
+  gap: 8px;
+}
+
+.cardMedium .title {
+  font-size: 16px;
+}
+
+.cardSmall {
+  flex-direction: column;
+  width: 280px;
+  padding: 16px;
+}
+
+.smallBody {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cardSmall .title {
+  font-size: 14px;
+}
+
+.smallImageWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.blogContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mediumRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.sidebarColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .blogContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .mediumRow {
+    grid-template-columns: 1fr;
+  }
+}
