@@ -1,0 +1,224 @@
+.blog-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px;
+  background-color: #f8f9fa;
+}
+
+.blog-container {
+  width: 100%;
+  max-width: 1120px;
+}
+
+.blog-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 32px 0;
+}
+
+/* Вкладки */
+.blog-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 40px;
+  padding-bottom: 4px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8c8c8c;
+  padding: 8px 0 12px 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab-btn:hover {
+  color: #1a1a1a;
+}
+
+.tab-btn--active {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.tab-btn--active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #1a1a1a;
+}
+
+/* Сетка постов (3 колонки) */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 56px;
+}
+
+@media (max-width: 992px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Карточки в Блоге */
+.blog-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.blog-card__image-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.blog-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card__content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card__date {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+}
+
+.blog-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+/* Футер карточки */
+.blog-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
+
+.card-reactions,
+.card-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.card-react-btn,
+.card-action-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px;
+  color: #8c8c8c;
+}
+
+.card-react-btn:hover,
+.card-action-btn:hover {
+  color: #1a1a1a;
+}
+
+/* Пагинация */
+.blog-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e8e8e8;
+  padding-top: 32px;
+}
+
+.pagination-arrow {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.pagination-arrow:disabled {
+  color: #bfbfbf;
+  cursor: not-allowed;
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-num {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8c8c8c;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-num:hover {
+  color: #1a1a1a;
+  background-color: #e8e8e8;
+}
+
+.page-num--active {
+  color: #1a1a1a;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+}
+
+.pagination-dots {
+  color: #8c8c8c;
+  padding: 0 4px;
+}
